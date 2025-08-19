@@ -60,4 +60,4 @@ function slideDestinations() {
   container.style.transform = `translateX(-${currentIndex * (200 + 24)}px)`;
 }
 
-setInterval(slideDestinations, 3000);
+setInterval(slideDestinations, 2000);
