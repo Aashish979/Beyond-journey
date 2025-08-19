@@ -54,11 +54,13 @@
 /* Hero */
 .hero-section {
   position: relative;
-  height: 70vh;
+  min-height: 60vh;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  padding: 60px 20px;
 }
 .hero-section video {
   position: absolute;
@@ -80,7 +82,12 @@
   z-index: 2;
   text-align: center;
   margin-bottom: 50px;
-  margin-left: 9%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-text h1 {
+  font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
 /* Search box */
@@ -89,7 +96,8 @@
   border-radius: 50px;
   padding: 8px 16px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-  max-width: 360px;
+  width: 100%;
+  max-width: 500px;
   margin: 25px auto 0;
   display: flex;
   align-items: center;
@@ -155,8 +163,6 @@
   font-size: 1.08rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  border-bottom: none;
-  padding-bottom: 0;
 }
 #sidebar ul {
   list-style: none;
@@ -188,12 +194,20 @@
   font-size: 1.1rem;
   color: var(--green);
 }
+
+/* Sidebar Responsive */
+@media (max-width: 768px) {
+  #sidebar {
+    width: 80vw;
+    right: -80vw;
+    border-radius: 0;
+    padding: 16px 8px 8px 8px;
+  }
+}
 @media (max-width: 500px) {
   #sidebar {
     width: 90vw;
     right: -90vw;
-    border-radius: 0;
-    padding: 16px 8px 8px 8px;
   }
 }
 
@@ -203,7 +217,7 @@
   bottom: -24%;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
+  width: 90%;
   max-width: 900px;
   z-index: 3;
 }
@@ -213,7 +227,7 @@
   transition: transform 0.6s ease-in-out;
 }
 .destination-item {
-  min-width: 200px;
+  min-width: 160px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -225,15 +239,15 @@
   transform: translateY(-5px);
 }
 .destination-img {
-  width: 180px;
-  height: 180px;
+  width: clamp(100px, 20vw, 180px);
+  height: clamp(100px, 20vw, 180px);
   border-radius: 50%;
   object-fit: cover;
   border: 6px solid #fff;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 .destination-name {
-  font-size: 0.95rem;
+  font-size: clamp(0.7rem, 2.5vw, 1rem);
   font-weight: 600;
   color: rgba(0, 0, 0, 0.7);
   text-align: center;
