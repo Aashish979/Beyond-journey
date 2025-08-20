@@ -46,9 +46,9 @@
 .navbar-brand {
   display: flex;
   align-items: center;
-  font-weight: 600;
+  font-weight: 500;
   color: white !important;
-  font-size: 1.2rem;
+  font-size: .5rem !important;
 }
 .navbar-brand span.orange { color: var(--orange); }
 .navbar-brand span.green { color: var(--colors-accent-200); }
@@ -294,6 +294,106 @@
   background: var(--green);
   transform: scale(1.2);
 }
+
+/* ================= MOBILE RESPONSIVENESS ================= */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    padding: 0.4rem 0;
+  }
+  .navbar-brand img {
+    height: 32px;
+  }
+  .navbar-nav .nav-link {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .btn-login {
+    font-size: 0.8rem;
+    padding: 3px 10px;
+  }
+  .menu-btn {
+    font-size: 1.3rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    height: 55vh;
+  }
+  .hero-text {
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .hero-text h1 {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+  }
+
+  /* Search box */
+  .search-box {
+    max-width: 90%;
+    padding: 6px 12px;
+  }
+  .search-box input {
+    font-size: 0.9rem;
+  }
+
+  /* Destination Slider */
+  .destination-overlay {
+    bottom: -35%;
+    width: 95%;
+  }
+  .destination-img {
+    width: 120px;
+    height: 120px;
+    border: 4px solid #fff;
+  }
+  .destination-name {
+    font-size: 0.8rem;
+  }
+
+  /* Adjust destination gap */
+  .destinations {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Navbar adjustments */
+  .navbar-brand img {
+    height: 28px;
+  }
+  .navbar-nav .nav-link {
+    font-size: 0.75rem;
+  }
+
+  /* Hero section smaller text */
+  .hero-text h1 {
+    font-size: 1.1rem;
+    line-height: 1.3rem;
+  }
+
+  /* Search box compact */
+  .search-box {
+    padding: 4px 10px;
+  }
+  .search-box input {
+    font-size: 0.8rem;
+  }
+
+  /* Destination slider smaller */
+  .destination-overlay {
+    bottom: -40%;
+  }
+  .destination-img {
+    width: 90px;
+    height: 90px;
+  }
+  .destination-name {
+    font-size: 0.7rem;
+  }
+}
+
 
 </style>
 </head>
