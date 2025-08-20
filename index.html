@@ -109,7 +109,7 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 6%;
   margin-left: 9%;
 }
 
@@ -227,7 +227,7 @@
   }
 }
 
-/* Destination Overlay */
+/* Slider wrapper */
 .destination-overlay {
   position: absolute;
   bottom: -24%;
@@ -236,12 +236,18 @@
   width: 80%;
   max-width: 900px;
   z-index: 3;
+  text-align: center;
 }
+
 .destinations {
   display: flex;
   gap: 1.5rem;
   transition: transform 0.6s ease-in-out;
+  will-change: transform;
+  
 }
+
+/* Destination items */
 .destination-item {
   min-width: 200px;
   flex-shrink: 0;
@@ -251,9 +257,7 @@
   cursor: pointer;
   transition: transform 0.3s ease;
 }
-.destination-item:hover {
-  transform: translateY(-5px);
-}
+.destination-item:hover { transform: translateY(-5px); }
 .destination-img {
   width: 180px;
   height: 180px;
@@ -265,9 +269,29 @@
 .destination-name {
   font-size: 0.95rem;
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.7);
-  text-align: center;
+  color: rgba(0,0,0,0.7);
   margin-top: 8px;
+}
+
+/* Slider dots */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 6px;
+}
+.slider-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #ccc;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.slider-dots span.active {
+  background: var(--green);
+  transform: scale(1.2);
 }
 
 </style>
@@ -341,6 +365,7 @@
   <div class="destinations" id="destinations">
     <!-- JS Injected -->
   </div>
+  <div class="slider-dots" id="sliderDots"></div>
 </div>
 
 <script>
@@ -385,6 +410,9 @@ const destinationsData = [
 ];
 
 const container = document.getElementById("destinations");
+const dotsContainer = document.getElementById("sliderDots");
+
+let currentIndex = 0;
 
 // Render items
 destinationsData.forEach(dest => {
@@ -397,17 +425,37 @@ destinationsData.forEach(dest => {
   container.appendChild(div);
 });
 
-let currentIndex = 0;
-function slideDestinations() {
-  currentIndex++;
-  if (currentIndex > destinationsData.length - 3) {
-    currentIndex = 0;
-  }
-  container.style.transform = `translateX(-${currentIndex * (200 + 24)}px)`;
+// Render dots
+destinationsData.forEach((_, index) => {
+  const dot = document.createElement("span");
+  if (index === 0) dot.classList.add("active");
+  dot.addEventListener("click", () => goToSlide(index));
+  dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll(".slider-dots span");
+
+// Slide function
+function goToSlide(index) {
+  currentIndex = index;
+  const offset = currentIndex * (200 + 24); // item width + gap
+  container.style.transform = `translateX(-${offset}px)`;
+  updateDots();
 }
 
-setInterval(slideDestinations, 2000);
+// Update dots
+function updateDots() {
+  dots.forEach(dot => dot.classList.remove("active"));
+  dots[currentIndex].classList.add("active");
+}
 
+// Auto slide
+function autoSlide() {
+  currentIndex++;
+  if (currentIndex >= destinationsData.length) currentIndex = 0;
+  goToSlide(currentIndex);
+}
+setInterval(autoSlide, 2500);
 </script>
 </body>
 </html>
