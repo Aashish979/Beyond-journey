@@ -36,6 +36,11 @@
   --green: #28a745;
 }
 
+body{
+  margin: 0%;
+  padding: 0%;
+}
+
 /* Navbar */
 .navbar {
   padding: 0.6rem 0;
@@ -441,6 +446,7 @@
     width: 100%;
     max-width: none;
     padding: 6px 12px;
+    font-size: 14px;
   }
   .search-box input {
     font-size: 0.8rem;
@@ -469,6 +475,12 @@
     min-height: 44px;
     min-width: 44px;
   }
+
+   .slider-container img,
+  .slider-container .destination {
+    width: 90px;
+    height: 90px;
+  }
 }
 
 /* Tablet */
@@ -481,6 +493,27 @@
     width: 120px;
     height: 120px;
   }
+
+    .slider-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+  }
+
+  .slider-container img,
+  .slider-container .destination {
+    width: 120px; /* smaller circle */
+    height: 120px;
+    margin: 0 8px;
+  }
+
+  .search-box {
+    width: 90%; /* make search box responsive */
+    margin: 0 auto;
+  }
+}
+
 }
 
 /* ================= LARGE SCREENS & 4K ================= */
