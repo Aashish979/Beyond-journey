@@ -301,8 +301,8 @@
 
 /* Mobile (≤768px) */
 @media (max-width: 768px) {
-  body{
-    font-size: 8px;
+   body {
+    font-size: 14px;   /* base font size */
   }
   .navbar { padding: 0.4rem 0; }
   .navbar-brand img { height: 32px; }
@@ -312,22 +312,32 @@
 
   .hero-section { height: 55vh; }
   .hero-text { margin: 0 auto; padding: 0 10px; }
-  .hero-text h1 { font-size: 1.4rem; line-height: 1.6rem; }
+  .hero-text h1 { font-size: 1.6rem; line-height: 1.3rem; }
+  .hero-section p {
+    font-size: 0.9rem;    /* smaller subtext */
+  }
 
   .search-box { max-width: 65%; padding: 6px 12px; }
 
   .destination-overlay { top: 115%; width: 95%;  }
   .destination-img { width: 140px; height: 140px; border: 4px solid #fff;}
-  .destination-name { font-size: 0.8rem; }
+  .destination-name { font-size: 0.75rem; }
   .destinations { gap: 1.7rem; }
 }
 
 /* Extra Small (≤480px) */
 @media (max-width: 480px) {
+   body {
+    font-size: 13px;
+  }
   .navbar-brand img { height: 28px; }
   .navbar-nav .nav-link { font-size: 0.75rem; }
 
-  .hero-text h1 { font-size: 1.2rem; line-height: 1.4rem; padding: 0 10px; }
+  .hero-text h1 { font-size: 1.2rem; }
+
+   .hero-section p {
+    font-size: 0.8rem;
+  }
 
   .search-box { width: 100%; max-width: none; }
 
@@ -339,7 +349,7 @@
   }
   .destinations { justify-content: center; gap: 0.8rem; }
   .destination-img { width: 80px; height: 80px; }
-  .destination-name { font-size: 0.75rem; }
+  .destination-name { font-size: 0.7rem; }
 
   .btn-login, .menu-btn { min-height: 44px; min-width: 44px; }
 }
