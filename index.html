@@ -229,16 +229,16 @@
 }
 
 /* Slider wrapper */
+/* Desktop */
 .destination-overlay {
   position: absolute;
-  bottom: -28%;
+  bottom: -30%;   /* instead of negative values */
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
   max-width: 900px;
   z-index: 3;
   text-align: center;
-}
 
 .destinations {
   display: flex;
@@ -381,18 +381,34 @@
     font-size: 0.8rem;
   }
 
-  /* Destination slider smaller */
   .destination-overlay {
-    bottom: -40%;
+    position: relative;  /* detach from hero */
+    bottom: auto;
+    margin-top: 20px;    /* spacing below hero */
+    width: 100%;
+  }
+  .destinations {
+    justify-content: center;
+    gap: 0.8rem;
   }
   .destination-img {
     width: 90px;
     height: 90px;
   }
-  .destination-name {
-    font-size: 0.7rem;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .destination-overlay {
+    bottom: 0;          /* sits at bottom of hero */
+    width: 95%;
+  }
+  .destination-img {
+    width: 120px;
+    height: 120px;
   }
 }
+
 
 
 </style>
