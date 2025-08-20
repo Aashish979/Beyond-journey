@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="application-name" content="BeyondJourney" />
+    <meta name="theme-color" content="#FFF">
+    <meta name="msapplication-navbutton-color" content="#4a4a4a" />
+    <meta name="msapplication-starturl" content="/">
+    <meta name="view-transition" content="same-origin" />
+
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW" />
+
+
+    <meta name="google-site-verification" content="Gx2T1oJX2yNrFGRrA91vsRT90qj_bsL7rI_iMF3C4jw" />
+
   <title>Beyond Journey</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
@@ -10,8 +27,250 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/style.css">
+<style>
+:root {
+  --orange: #ff7f00;
+  --colors-accent-200: #98ff53;
+  --green: #28a745;
+}
+
+/* Navbar */
+.navbar {
+  padding: 0.6rem 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: white !important;
+  font-size: 1.2rem;
+}
+.navbar-brand span.orange { color: var(--orange); }
+.navbar-brand span.green { color: var(--colors-accent-200); }
+.navbar-nav .nav-link {
+  color: white !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.8rem;
+  transition: color 0.3s ease;
+}
+.navbar-nav .nav-link:hover { color: var(--orange) !important; }
+.nav-item.dropdown:hover .dropdown-menu { display: block; }
+.btn-login {
+  border: 1px solid white;
+  border-radius: 6px;
+  color: white !important;
+  padding: 4px 16px;
+  font-size: 0.9rem;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+.btn-login:hover {
+  background: white;
+  color: #333 !important;
+}
+.menu-btn {
+  color: white;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+}
+
+/* Hero */
+.hero-section {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.hero-section video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+.hero-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 50px;
+  margin-left: 9%;
+}
+
+/* Search box */
+.search-box {
+  background: white;
+  border-radius: 50px;
+  padding: 8px 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  max-width: 360px;
+  margin: 25px auto 0;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--colors-accent-200);
+}
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding-left: 10px;
+  font-size: 1rem;
+}
+.search-box i {
+  font-size: 1.2rem;
+  color: black;
+}
+
+/* Sidebar */
+#sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 280px;
+  height: calc(100% - 40px);
+  bottom: 40px;
+  background: #fff;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: 16px 0 0 16px;
+  transition: all 0.4s cubic-bezier(.4,0,.2,1);
+  z-index: 9999;
+  padding: 22px 18px 18px 18px;
+  color: #222;
+  overflow-y: auto;
+  border-left: 3px solid var(--green);
+}
+#sidebar .sidebar-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  gap: 12px;
+}
+#sidebar .sidebar-profile img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--green);
+  object-fit: cover;
+}
+#sidebar .sidebar-profile .profile-info {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: 0.2px;
+}
+#sidebar hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 10px 0 16px 0;
+}
+#sidebar h4 {
+  color: #222;
+  margin-bottom: 10px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#sidebar ul li {
+  margin: 2px 0;
+  transition: all 0.2s;
+}
+#sidebar ul li a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+#sidebar ul li a:hover {
+  color: var(--green);
+  background: #f6fefb;
+  font-weight: 600;
+}
+#sidebar ul li a i {
+  font-size: 1.1rem;
+  color: var(--green);
+}
+@media (max-width: 500px) {
+  #sidebar {
+    width: 90vw;
+    right: -90vw;
+    border-radius: 0;
+    padding: 16px 8px 8px 8px;
+  }
+}
+
+/* Destination Overlay */
+.destination-overlay {
+  position: absolute;
+  bottom: -24%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 900px;
+  z-index: 3;
+}
+.destinations {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.6s ease-in-out;
+}
+.destination-item {
+  min-width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.destination-item:hover {
+  transform: translateY(-5px);
+}
+.destination-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.destination-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  margin-top: 8px;
+}
+
+</style>
 </head>
 <body>
   <!-- Navbar -->
@@ -70,7 +329,7 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-text container">
-      <h1>Har Safar <span style="font-family: 'Satisfy', cursive; color: #FF8C00;">Ek Nayi</span> Kahani</h1>
+      <h1>Har Safar <span style="font-family: 'Satisfy', cursive; color: #98ff53;">Ek Nayi</span> Kahani</h1>
     <div class="search-box">
       <i class="bi bi-search"></i>
       <input type="text" placeholder="Search countries, cities">
@@ -84,7 +343,71 @@
   </div>
 </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/script.js"></script>
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+
+menuBtn.addEventListener("click", () => {
+  sidebar.style.right = sidebar.style.right === "0px" ? "-300px" : "0";
+});
+
+document.addEventListener("click", (event) => {
+  if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
+    sidebar.style.right = "-300px";
+  }
+});
+
+// Typewriter effect for search
+const searchInput = document.querySelector('.search-box input');
+const text = "Where do you want to Holiday?";
+let i = 0;
+function typeWriter() {
+  if (i < text.length) {
+    searchInput.placeholder = text.substring(0, i + 1);
+    i++;
+  } else {
+    i = 0;
+  }
+  setTimeout(typeWriter, 200);
+}
+typeWriter();
+
+const destinationsData = [
+  { name: "Sri Lanka", img: "assets/images/Inter-national-trip/1.jpg" },
+  { name: "Europe", img: "assets/images/Inter-national-trip/2.jpg" },
+  { name: "Dubai", img: "assets/images/Inter-national-trip/3.jpg" },
+  { name: "Mauritius", img: "assets/images/Inter-national-trip/4.jpg" },
+  { name: "Singapore", img: "assets/images/Inter-national-trip/5.jpg" },
+  { name: "North Goa", img: "assets/images/Inter-national-trip/6.jpg" },
+  { name: "Vietnam", img: "assets/images/Inter-national-trip/7.jpg" },
+  { name: "Maldives", img: "assets/images/Inter-national-trip/8.jpg" },
+  { name: "Malaysia", img: "assets/images/Inter-national-trip/9.jpg" }
+];
+
+const container = document.getElementById("destinations");
+
+// Render items
+destinationsData.forEach(dest => {
+  const div = document.createElement("div");
+  div.classList.add("destination-item");
+  div.innerHTML = `
+    <img src="${dest.img}" alt="${dest.name}" class="destination-img">
+    <span class="destination-name">${dest.name}</span>
+  `;
+  container.appendChild(div);
+});
+
+let currentIndex = 0;
+function slideDestinations() {
+  currentIndex++;
+  if (currentIndex > destinationsData.length - 3) {
+    currentIndex = 0;
+  }
+  container.style.transform = `translateX(-${currentIndex * (200 + 24)}px)`;
+}
+
+setInterval(slideDestinations, 2000);
+
+</script>
 </body>
 </html>
