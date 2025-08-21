@@ -36,6 +36,12 @@
   --green: #28a745;
 }
 
+/* Stop horizontal scrollbar */
+body {
+  overflow-x: hidden;
+}
+
+
 /* ================= NAVBAR ================= */
 .navbar {
   padding: 0.6rem 0;
@@ -53,6 +59,7 @@
 }
 .navbar-brand span.orange { color: var(--orange); }
 .navbar-brand span.green { color: var(--colors-accent-200); }
+
 .navbar-nav .nav-link {
   color: white !important;
   font-weight: 500;
@@ -144,7 +151,7 @@
   top: 0;
   right: -320px;
   width: 280px;
-  height: calc(100% - 40px);
+  height: calc(100%);
   bottom: 40px;
   background: #fff;
   box-shadow: -4px 0 24px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.04);
@@ -154,7 +161,7 @@
   padding: 22px 18px 18px;
   color: #222;
   overflow-y: auto;
-  border-left: 3px solid var(--green);
+  /* border-left: 3px solid var(--green); */
 }
 #sidebar .sidebar-profile {
   display: flex;
@@ -218,6 +225,7 @@
   }
 }
 
+
 /* ================= DESTINATION SLIDER ================= */
 .destination-overlay {
   position: absolute;
@@ -228,6 +236,7 @@
   max-width: 900px;
   z-index: 3;
   text-align: center;
+  width: 55vw;
 }
 .destinations {
   display: flex;
@@ -280,9 +289,65 @@
 
 /* ================= RESPONSIVE BREAKPOINTS ================= */
 
-/* Tablet (600px - 1024px) */
-@media (min-width: 600px) and (max-width: 1024px) {
-  .navbar { padding: 0.5rem 0; }
+
+
+/* ================= MOBILE NAVBAR FIX ================= */
+@media (max-width: 768px) {
+  /* Hide Holiday Tour + Best Visit dropdowns in navbar */
+  .navbar-nav .nav-item.dropdown {
+    display: none !important;
+  }
+
+  /* Keep only Sign In + Menu */
+  .navbar-nav .btn-login,
+  .navbar-nav .menu-btn {
+    display: inline-block !important;
+  }
+
+  .destination-overlay {
+    width: 55vw;
+  }
+
+}
+
+/* Extra Small (≤480px) */
+@media (max-width: 480px) {
+  .navbar-brand img { height: 28px; }
+  .navbar-nav .nav-link { font-size: 0.75rem !important; }
+
+  .hero-text h1 { font-size: 1.2rem; line-height: 1.4rem; padding: 0 10px; }
+
+  .search-box { width: 100%; max-width: none; }
+
+  .destination-overlay {
+    position: relative;
+    bottom: auto;
+    margin-top: 20px;
+    width: 55vw
+  }
+  .destinations { justify-content: center; gap: 0.8rem; }
+  .destination-img { width: 80px; height: 80px; }
+  .destination-name { font-size: 0.75rem; }
+
+  .btn-login {   min-height: 44px; min-width: 44px !important; }
+  .menu-btn {
+  display: block !important;
+  border: none;
+  background: transparent;
+  color: #fff; /* change if background is light */
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,..."); /* Bootstrap adds this automatically */
+
+}
+
+
+  /* Tablet (600px - 1024px) */
+@media (max-width: 1024px) {
+  body{
+    font-size: 7px;
+  }
+  /* .navbar { padding: 0.5rem 0; }
   .navbar-brand img { height: 34px; }
   .navbar-nav .nav-link { font-size: 0.9rem; padding: 0.45rem 0.7rem; }
   .btn-login { font-size: 0.85rem; padding: 4px 12px; }
@@ -296,86 +361,15 @@
   .destination-overlay { bottom: -20%; width: 85%; }
   .destinations { gap: 1.2rem; }
   .destination-img { width: 140px; height: 140px; border: 5px solid #fff; }
-  .destination-name { font-size: 0.9rem; }
+  .destination-name { font-size: 0.9rem; } */
 }
-
-/* Mobile (≤768px) */
-@media (max-width: 768px) {
-  .navbar { padding: 0.4rem 0; }
-  .navbar-brand img { height: 32px; }
-  .navbar-nav .nav-link { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
-  .btn-login { font-size: 0.8rem; padding: 3px 10px; }
-  .menu-btn { font-size: 1.3rem; }
-
-  .hero-section { height: 55vh; }
-  .hero-text { margin: 0 auto; padding: 0 10px; }
-  .hero-text h1 { font-size: 1.4rem; line-height: 1.6rem; }
-
-  .search-box { max-width: 90%; padding: 6px 12px; }
-
-  .destination-overlay { top: 120%; width: 95%; }
-  .destination-img { width: 120px; height: 120px; border: 4px solid #fff; }
-  .destination-name { font-size: 0.8rem; }
-  .destinations { gap: 1.5rem; }
-5
-
-/* Extra Small (≤480px) */
-@media (max-width: 480px) {
-  .navbar-brand img { height: 28px; }
-  .navbar-nav .nav-link { font-size: 0.75rem; }
-
-  .hero-text h1 { font-size: 1.2rem; line-height: 1.4rem; padding: 0 10px; }
-
-  .search-box { width: 100%; max-width: none; }
-
-  .destination-overlay {
-    position: relative;
-    bottom: auto;
-    margin-top: 20px;
-    width: 100%;
-  }
-  .destinations { justify-content: center; gap: 0.8rem; }
-  .destination-img { width: 80px; height: 80px; }
-  .destination-name { font-size: 0.75rem; }
-
-  .btn-login, .menu-btn { min-height: 44px; min-width: 44px; }
-}
-
-/* Large Screens (≥1440px) */
-@media (min-width: 1440px) {
-  .navbar .container { max-width: 1400px; }
-  .navbar-brand img { height: 50px; }
-  .navbar-nav .nav-link { font-size: 1.1rem; padding: 0.6rem 1rem; }
-  .btn-login { font-size: 1rem; padding: 6px 18px; }
-
-  .hero-section { height: 85vh; }
-  .hero-text h1 { font-size: 3rem; line-height: 3.4rem; }
-
-  .search-box { max-width: 500px; padding: 12px 20px; font-size: 1.1rem; }
-
-  .destination-overlay { bottom: -15%; width: 70%; max-width: 1200px; }
-  .destination-img { width: 220px; height: 220px; border: 8px solid #fff; }
-  .destination-name { font-size: 1.1rem; }
-}
-
-/* Ultra Wide (≥1920px) */
-@media (min-width: 1920px) {
-  .navbar .container { max-width: 1600px; }
-  .hero-text h1 { font-size: 3.5rem; line-height: 4rem; }
-  .search-box { max-width: 600px; }
-  .destination-overlay { width: 65%; max-width: 1400px; }
-  .destination-img { width: 250px; height: 250px; }
-  .destination-name { font-size: 1.2rem; }
-}
-
-
 
 
 </style>
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
+  <nav class=" navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img src="assets/images/logo-ft.png" alt="Beyond Journey Logo" height="40">
