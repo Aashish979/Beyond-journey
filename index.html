@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+
 <style>
 :root {
   --orange: #FFA500;
@@ -31,7 +32,7 @@
 .navbar-nav .nav-link {
   color: white !important;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-family: 'Poppins', sans-serif;
   transition: color 0.3s ease;
 }
@@ -109,15 +110,19 @@
   text-align: center;
   padding: 0 15px;
   font-family: 'Montserrat', sans-serif;
+  margin-left: 9% ;
+  margin-bottom: 3% ;
 }
 .hero-text h1 {
   font-size: 2.2rem;
-  font-weight: 650px
+  font-weight: 630;
   letter-spacing: 1px;
+  margin-bottom: 35px;
 }
 .hero-text h1 span {
   font-family: 'Satisfy', cursive;
   color: var(--accent-green);
+  font-weight: 300;
 }
 .search-box {
   background: white;
@@ -137,11 +142,10 @@
   font-size: 0.95rem;
   padding-left: 10px;
 }
-
- .search-box i {
-      font-size: 1.2rem;
-      color: black;
-    }
+.search-box i {
+  font-size: 1.2rem;
+  color: black;
+}
 
 /* Sidebar */
 #sidebar {
@@ -183,6 +187,7 @@
   color: #444;
   text-decoration: none;
   font-size: 0.9rem;
+  font-weight: 500;
 }
 #sidebar ul li a:hover {
   background: #f6fefb;
@@ -236,7 +241,7 @@
 }
 
 .navbar-nav .nav-item {
-  margin-left: 1.5rem; /* decent gap between each item */
+  margin-left: 1.5rem;
 }
 </style>
 </head>
@@ -247,12 +252,9 @@
       <a class="navbar-brand" href="#">
         <img src="assets/images/logo-ft.png" alt="Beyond Journey Logo">
       </a>
-      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <i class="bi bi-list"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Navlinks only on lg and up -->
+      <div class="collapse navbar-collapse d-none d-lg-flex" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-lg-center">
-          <!-- Holiday Tour Packages -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">Holiday Tour Packages</a>
             <ul class="dropdown-menu">
@@ -260,7 +262,6 @@
               <li><a class="dropdown-item" href="#">India Tour</a></li>
             </ul>
           </li>
-          <!-- Best Visit -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">Best Visit</a>
             <ul class="dropdown-menu">
@@ -268,18 +269,14 @@
               <li><a class="dropdown-item" href="#">By Season</a></li>
             </ul>
           </li>
-          <!-- Travel Blogs -->
           <li class="nav-item">
             <a class="nav-link" href="#">Travel Blogs</a>
           </li>
-          <!-- Sign in & Menu button -->
-          <li class="nav-item ms-lg-3">
-            <a class="btn btn-login" href="#">Sign In</a>
-          </li>
-          <li class="nav-item">
-            <button class="menu-btn" id="menuBtn"><i class="bi bi-list"></i></button>
-          </li>
         </ul>
+      </div>
+      <div class="ms-auto d-flex align-items-center px-3">
+        <a class="btn btn-login me-2" href="#">Sign In</a>
+        <button class="menu-btn" id="menuBtn"><i class="bi bi-list"></i></button>
       </div>
     </div>
   </nav>
@@ -289,9 +286,14 @@
     <span class="close-btn">&times;</span>
     <div class="sidebar-profile">
       <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
-      <div class="profile-info">Hello Ashish</div>
+      <div class="profile-info" style="font-weight: 600;">Hello Ashish</div>
     </div>
-    <hr>
+    <!-- Navlinks duplicated here, only for mobile/tablet -->
+    <ul class="d-lg-none">
+      <li><a href="#">Holiday Tour Packages</a></li>
+      <li><a href="#">Best Visit</a></li>
+      <li><a href="#">Travel Blogs</a></li>
+    </ul>
     <ul>
       <li><a href="#"><i class="bi bi-geo-alt"></i> Random Tour Package</a></li>
       <li><a href="#"><i class="bi bi-compass"></i> Adventure Trip</a></li>
@@ -384,9 +386,9 @@ new Swiper(".mySwiper", {
   loop: true,
   autoplay: { delay: 2000, disableOnInteraction: false },
   breakpoints: {
-    320: { slidesPerView: 2, spaceBetween: 10 },
+    320: { slidesPerView: 2, spaceBetween: 10 }, 
     768: { slidesPerView: 3, spaceBetween: 15 },
-    1024: { slidesPerView: 5, spaceBetween: 20 }
+    1024: { slidesPerView: 5, spaceBetween: 18 }
   }
 });
 </script>
