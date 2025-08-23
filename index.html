@@ -9,8 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Montserrat:wght@400;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-
+  
 <style>
 :root {
   --orange: #FFA500;
@@ -28,7 +27,6 @@
 }
 .navbar-brand img { height: 40px; }
 
-/* Nav links */
 .navbar-nav .nav-link {
   color: white !important;
   font-weight: 500;
@@ -42,15 +40,25 @@
 }
 
 /* Dropdown hover effect */
-.nav-item.dropdown:hover > .dropdown-menu {
+.nav-item.dropdown .dropdown-menu {
   display: block;
-  margin-top: 0;
-}
-.dropdown-menu {
+  opacity: 0;
+  transform: translateY(15px);
+  visibility: hidden;
+  transition: all 0.35s ease;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  margin-top: 0;
 }
+.nav-item.dropdown:hover > .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-item.dropdown:first-child:hover > .dropdown-menu { transform: translate(-15px, 0); }
+.nav-item.dropdown:nth-child(2):hover > .dropdown-menu { transform: translate(15px, 0); }
+
 .dropdown-item {
   font-size: 0.9rem;
   color: #333;
@@ -101,7 +109,7 @@
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.6);
   z-index: 1;
 }
 .hero-text {
@@ -113,16 +121,16 @@
   margin-left: 9% ;
   margin-bottom: 3% ;
 }
-.hero-text h1 {
+.hero-text h2 {
   font-size: 2.2rem;
   font-weight: 630;
   letter-spacing: 1px;
   margin-bottom: 35px;
 }
-.hero-text h1 span {
+.hero-text h2 span {
   font-family: 'Satisfy', cursive;
-  color: var(--accent-green);
   font-weight: 300;
+  color: #FFA500;
 }
 .search-box {
   background: white;
@@ -198,24 +206,25 @@
 
 /* Mobile Fullscreen Sidebar */
 @media (max-width: 576px) {
-  #sidebar {
-    width: 100vw;
-    height: 100vh;
-    right: -100vw;
-    border-radius: 0;
-  }
+  #sidebar { width: 100vw; height: 100vh; right: -100vw; border-radius: 0; }
+  .hero-text{ max-width: 360px; margin-bottom: 25%; }
+  .hero-section video { height: 75%; }
+  .hero-overlay { height: 75%; }
+  .destination-img{ height: 120px; width: 120px; }
+  .navbar-brand img { height: 30px; }
+  .search-box{ max-width: 270px; }
+  .search-box input{ font-size: .8rem; }
+  .destination-img{ height: 150px  !important; width: 150px !important; }
 }
-
-/* Responsive Text & Buttons */
 @media (max-width: 768px) {
-  .hero-text h1 { font-size: 1.6rem; }
+  .hero-text h2 { font-size: 1.3rem; }
   .btn-login { font-size: 0.8rem; padding: 4px 10px; }
 }
 
 /* Swiper Destinations */
 .destination-overlay {
   position: absolute;
-  bottom: -25%;
+  bottom: -27%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -230,9 +239,19 @@
   width: 180px; height: 180px;
   border-radius: 50%;
   object-fit: cover;
-  border: 6px solid #fff;
+  border: 11px solid #fff;
   margin-bottom: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeZoom 0.8s ease forwards;
+}
+.destination-img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+}
+@keyframes fadeZoom {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
 .destination-name {
   font-size: 0.9rem;
@@ -240,8 +259,9 @@
   color: rgba(0, 0, 0, 0.7);
 }
 
-.navbar-nav .nav-item {
-  margin-left: 1.5rem;
+.navbar-nav .nav-item { margin-left: 1.5rem; }
+@media (min-width: 769px) {
+  .gap{ margin-left: 10px !important; }
 }
 </style>
 </head>
@@ -249,10 +269,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="assets/images/logo-ft.png" alt="Beyond Journey Logo">
-      </a>
-      <!-- Navlinks only on lg and up -->
+      <a class="navbar-brand" href="#"><img src="assets/images/logo-ft.png" alt="Beyond Journey Logo"></a>
       <div class="collapse navbar-collapse d-none d-lg-flex" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-lg-center">
           <li class="nav-item dropdown">
@@ -269,12 +286,10 @@
               <li><a class="dropdown-item" href="#">By Season</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Travel Blogs</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Travel Blogs</a></li>
         </ul>
       </div>
-      <div class="ms-auto d-flex align-items-center px-3">
+      <div class="ms-auto d-flex align-items-center gap">
         <a class="btn btn-login me-2" href="#">Sign In</a>
         <button class="menu-btn" id="menuBtn"><i class="bi bi-list"></i></button>
       </div>
@@ -288,11 +303,22 @@
       <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
       <div class="profile-info" style="font-weight: 600;">Hello Ashish</div>
     </div>
-    <!-- Navlinks duplicated here, only for mobile/tablet -->
     <ul class="d-lg-none">
-      <li><a href="#">Holiday Tour Packages</a></li>
-      <li><a href="#">Best Visit</a></li>
-      <li><a href="#">Travel Blogs</a></li>
+      <li>
+        <a data-bs-toggle="collapse" href="#holidayMenu" role="button"><i class="bi bi-suitcase"></i> Holiday Tour Packages</a>
+        <ul class="collapse ps-4" id="holidayMenu">
+          <li><a href="#">International Tour</a></li>
+          <li><a href="#">India Tour</a></li>
+        </ul>
+      </li>
+      <li>
+        <a data-bs-toggle="collapse" href="#bestvisitMenu" role="button"><i class="bi bi-map"></i> Best Visit</a>
+        <ul class="collapse ps-4" id="bestvisitMenu">
+          <li><a href="#">By Month</a></li>
+          <li><a href="#">By Season</a></li>
+        </ul>
+      </li>
+      <li><a href="#"><i class="bi bi-journal-text"></i> Travel Blogs</a></li>
     </ul>
     <ul>
       <li><a href="#"><i class="bi bi-geo-alt"></i> Random Tour Package</a></li>
@@ -310,7 +336,7 @@
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-text container">
-      <h1>Har Safar <span>Ek Nayi</span> Kahani</h1>
+      <h2>Har Safar <span>Ek Nayi</span> Kahani</h2>
       <div class="search-box">
         <i class="bi bi-search"></i>
         <input type="text" placeholder="Search countries, cities">
@@ -319,9 +345,7 @@
 
     <!-- Destination Overlay -->
     <div class="destination-overlay">
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper"></div>
-      </div>
+      <div class="swiper mySwiper"><div class="swiper-wrapper"></div></div>
     </div>
   </section>
 
@@ -331,11 +355,8 @@
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
 const closeBtn = document.querySelector(".close-btn");
-
 menuBtn.addEventListener("click", () => { sidebar.style.right = "0"; });
-closeBtn.addEventListener("click", () => {
-  sidebar.style.right = window.innerWidth <= 576 ? "-100vw" : "-320px";
-});
+closeBtn.addEventListener("click", () => { sidebar.style.right = window.innerWidth <= 576 ? "-100vw" : "-320px"; });
 document.addEventListener("click", (event) => {
   if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
     sidebar.style.right = window.innerWidth <= 576 ? "-100vw" : "-320px";
@@ -347,10 +368,8 @@ const searchInput = document.querySelector('.search-box input');
 const text = "Where do you want to Holiday?";
 let i = 0;
 function typeWriter() {
-  if (i < text.length) {
-    searchInput.placeholder = text.substring(0, i + 1);
-    i++;
-  } else { i = 0; }
+  if (i < text.length) { searchInput.placeholder = text.substring(0, i + 1); i++; }
+  else { i = 0; }
   setTimeout(typeWriter, 200);
 }
 typeWriter();
